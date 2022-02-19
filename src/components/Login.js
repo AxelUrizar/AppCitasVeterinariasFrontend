@@ -26,22 +26,24 @@ class Login extends React.Component {
 
     render(){
         return (
-            <div>
-                <h1>Log In</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="container d-flex flex-column align-items-between justify-content-center" >
-                        <label className="row m-2">
-                            <p className="col-6">User:</p>
-                            <input className="col-6" name="user" type='text' value={this.state.user} onChange={this.handleChange} />
-                        </label>
-                        <label className="row m-2">
-                            <p className="col-6">Password:</p>
-                            <input className="col-6" name="password" type='text' value={this.state.password} onChange={this.handleChange} />
-                        </label>
-                    </div>
-                    <button className="mt-4" type="submit">Acceder</button>
-                </form>
-                {this.state.submitDone && <Navigate to='/perfil'/>}
+            <div className="container h-75 pb-5 d-flex flex-column align-items-between justify-content-center">
+                <div>
+                    <h2 className="mb-5">Log In</h2>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="d-flex flex-column justify-content-around">
+                            <label className="row m-3">
+                                <p className="col-6">User:</p>
+                                <input className="col-6" name="user" type='text' value={this.state.user} onChange={this.handleChange} />
+                            </label>
+                            <label className="row m-3">
+                                <p className="col-6">Password:</p>
+                                <input className="col-6" name="password" type='text' value={this.state.password} onChange={this.handleChange} />
+                            </label>
+                        </div>
+                        <button className="mt-4" type="submit">Acceder</button>
+                    </form>
+                    {this.state.submitDone && <Navigate to='/perfil'/>}
+                </div>
             </div>
         )
     }

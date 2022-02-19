@@ -4,7 +4,7 @@ import { Link, Navigate } from "react-router-dom"
 class SignUp extends React.Component {
     constructor(props){
         super(props)
-        this.state = {nombre: '', contrasenya:'', confContrasenya:'', email:'', submitDone:false}
+        this.state = {nombre: '', contrasenya:'', confContrasenya:'', email:'', submitDone:false, contrasenyaCoincide: false}
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -16,43 +16,45 @@ class SignUp extends React.Component {
     handleSubmit(e){
         e.preventDefault();
 
-        if(this.state.confContrasenya != this.state.contrasenya) return console.log('Las contraseñas no coinciden');
+        if(this.state.confContrasenya != this.state.contrasenya) return (
+            this.setState({contrasenyaCoincide: true})
+        )
 
-        if (!this.state.nombre || !this.state.email || !this.state.contrasenya || !this.state.confContrasenya) {
-            console.log('Fields required!')
-        } else {
-            console.log('Submitted!')
-            console.log(this.state.nombre, this.state.email, this.state.contrasenya)
-            this.setState({submitDone:true})
-        }
+        console.log('Submitted!')
+        console.log(this.state.nombre, this.state.email, this.state.contrasenya)
+        this.setState({submitDone:true})        
     }
 
     render(){
         return (
-            <div>
-                <h1>Sign Up</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="container d-flex flex-column align-items-between justify-content-center" >
-                        <label className="row m-2">
-                            <p className="col-6">Nombre Completo:</p>
-                            <input className="col-6" name="nombre" type='text' value={this.state.nombre} onChange={this.handleChange} />
-                        </label>
-                        <label className="row m-2">
-                            <p className="col-6">E-mail:</p>
-                            <input className="col-6" name="email" type='text' value={this.state.email} onChange={this.handleChange} />
-                        </label>
-                        <label className="row m-2">
-                            <p className="col-6">Contraseña:</p>
-                            <input className="col-6" name="contrasenya" type='text' value={this.state.contrasenya} onChange={this.handleChange} />
-                        </label>
-                        <label className="row m-2">
-                            <p className="col-6">Confirmar Contraseña:</p>
-                            <input className="col-6" name="confContrasenya" type='text' value={this.state.confContrasenya} onChange={this.handleChange} />
-                        </label>
-                    </div>
-                    <button className="mt-4" type="submit">Acceder</button>
-                </form>
-                {this.state.submitDone && <Navigate to='/perfil'/>}
+            <div className="h-75 pb-5 d-flex flex-column align-items-between justify-content-center">
+                <div>
+                    <h2 className="mb-5">Sign Up</h2>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="container d-flex flex-column align-items-between justify-content-center" >
+                            <label className="row m-2">
+                                <p className="col-6">Nombre Completo:</p>
+                                <input className="col-6" name="nombre" type='text' required value={this.state.nombre} onChange={this.handleChange} />
+                            </label>
+                            <label className="row m-2">
+                                <p className="col-6">E-mail:</p>
+                                <input className="col-6" name="email" type='email' required value={this.state.email} onChange={this.handleChange} />
+                            </label>
+                            <label className="row m-2">
+                                <p className="col-6">Contraseña:</p>
+                                <input className="col-6" name="contrasenya" type='password' required value={this.state.contrasenya} onChange={this.handleChange} />
+                            </label>
+                            <label className="row m-2">
+                                <p className="col-6">Confirmar Contraseña:</p>
+                                <input className="col-6" name="confContrasenya" type='password' required value={this.state.confContrasenya} onChange={this.handleChange} />
+                            </label>
+                        </div>
+                        <button className="mt-5" type="submit">Acceder</button>
+                    </form>
+                    {this.state.contrasenyaCoincide && <p className="contrasenyaCoincide">Las contraseñas no coinciden.</p>}
+                    {this.state.submitDone && <Navigate to='/perfil'/>}
+
+                </div>
             </div>
         )
     }
