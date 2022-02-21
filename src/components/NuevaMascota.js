@@ -42,11 +42,11 @@ class NuevaMascota extends React.Component{
                             <div className="col-6 p-0 d-flex flex-column align-items-center">
                                 <div className="w-100 d-flex align-items-center justify-content-start">
                                     <label className="col-3 justify-content-start d-flex"qwer>Macho</label>
-                                    <input name="sexo" required checked={this.setState({sexo: 'macho'})} type='radio' />
+                                    <input name="sexo" required type='radio' />
                                 </div>
                                 <div className="w-100 d-flex align-items-center justify-content-start">
                                     <label className="col-3 justify-content-start d-flex">Hembra</label>
-                                    <input name="sexo" required checked={this.setState({sexo: 'hembra'})} type='radio' />
+                                    <input name="sexo" required type='radio' />
                                 </div>
                             </div>
                         </label>
