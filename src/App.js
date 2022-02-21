@@ -9,6 +9,7 @@ import Perfil from "./components/Perfil";
 import Mascotas from "./components/Mascotas";
 import CitasMascota from "./components/CitasMascota";
 import Home from "./components/Home";
+import NuevaMascota from "./components/NuevaMascota";
 
 function App() {
   return (
@@ -17,10 +18,19 @@ function App() {
         <NavBar />
         
           <Routes>
+            {/* Paths Principales */}
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<SignUp />} />
-            <Route path='/perfil/' element={<Perfil />} />
+
+            {/* Paths Usuarios */}
+            <Route path='/perfil' element={<Perfil />} />
+              {/* <Route path='/logout' element={<Logout />} /> */}
+              {/* <Route path='/logoutAll' element={<LogoutAll />} /> */}
+              {/* <Route path='/eliminarCuenta' element={<EliminarCuenta />} /> */}
+
+            {/* Paths Mascotas */}
+              <Route path='/perfil/nuevaMascota' element={<NuevaMascota />} />
             <Route path='/mascotas/:nombre' element={<Mascotas />} />
             <Route path='/citas/:nombre' element={<CitasMascota />} />
 

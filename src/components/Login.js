@@ -37,7 +37,7 @@ class Login extends React.Component {
                             </label>
                             <label className="row m-3">
                                 <p className="col-6">Password:</p>
-                                <input className="col-6" name="password" type='text' value={this.state.password} onChange={this.handleChange} />
+                                <input className="col-6" name="password" type='password' value={this.state.password} onChange={this.handleChange} />
                             </label>
                         </div>
                         <button className="mt-4" type="submit">Acceder</button>
