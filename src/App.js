@@ -17,26 +17,26 @@ function App() {
     <div className="App vh-100">
       <NavBar />
       
-        <Routes>
-          {/* Paths Principales */}
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<SignUp />} />
+      <Routes>
+        {/* Paths Principales */}
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
 
-          {/* Paths Usuarios */}
-          <Route path='/perfil' element={<Perfil />} />
-            {/* <Route path='/logout' element={<Logout />} /> */}
-            {/* <Route path='/logoutAll' element={<LogoutAll />} /> */}
-            {/* <Route path='/eliminarCuenta' element={<EliminarCuenta />} /> */}
+        {/* Paths Usuarios */}
+        <Route path='/perfil' element={<Perfil />} />
+          {/* <Route path='/logout' element={<Logout />} /> */}
+          {/* <Route path='/logoutAll' element={<LogoutAll />} /> */}
+          {/* <Route path='/eliminarCuenta' element={<EliminarCuenta />} /> */}
 
-          {/* Paths Mascotas */}
-          <Route path='/perfil/nuevaMascota' element={<NuevaMascota />} />
-          <Route path='/mascotas/:nombre' element={<Mascotas />} />
-          <Route path='/citas/:nombre' element={<CitasMascota />} />
+        {/* Paths Mascotas */}
+        <Route path='/perfil/nuevaMascota' element={<NuevaMascota />} />
+        <Route path='/mascotas/:nombre' element={<Mascotas />} />
+        <Route path='/citas/:nombre' element={<CitasMascota />} />
 
-          <Route path='/todasMascotas' element={<TodasMascotas />}/>
+        <Route path='/todasMascotas' element={<TodasMascotas />}/>
 
-        </Routes>
+      </Routes>
     </div>  
   );
 }

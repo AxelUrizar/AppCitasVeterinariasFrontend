@@ -1,10 +1,11 @@
 import React from "react"
 import { Navigate } from "react-router-dom"
+import AuthService from "./services/auth.service"
 
 class Login extends React.Component {
     constructor(props){
         super(props)
-        this.state = {user: '', password:'', submitDone:false}
+        this.state = {email: '', contrasenya:'', submitDone:false}
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -15,12 +16,15 @@ class Login extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        if (!this.state.user || !this.state.password) {
+        if (!this.state.email || !this.state.contrasenya) {
             console.log('Fields required!')
         } else {
             console.log('Submitted!')
-            console.log(this.state.user, this.state.password)
-            this.setState({submitDone:true})
+            console.log(this.state.email, this.state.contrasenya)
+            AuthService.login(
+                this.state.email,
+                this.state.contrasenya
+            ).then(this.setState({submitDone:true}))
         }
     }
 
@@ -32,12 +36,12 @@ class Login extends React.Component {
                     <form onSubmit={this.handleSubmit}>
                         <div className="d-flex flex-column justify-content-around">
                             <label className="row m-3">
-                                <p className="col-6">User:</p>
-                                <input className="col-6" name="user" type='text' value={this.state.user} onChange={this.handleChange} />
+                                <p className="col-6">E-mail:</p>
+                                <input className="col-6" name="email" type='text' value={this.state.email} onChange={this.handleChange} />
                             </label>
                             <label className="row m-3">
-                                <p className="col-6">Password:</p>
-                                <input className="col-6" name="password" type='password' value={this.state.password} onChange={this.handleChange} />
+                                <p className="col-6">Contraseña:</p>
+                                <input className="col-6" name="contrasenya" type='password' value={this.state.contrasenya} onChange={this.handleChange} />
                             </label>
                         </div>
                         <button className="mt-4" type="submit">Acceder</button>

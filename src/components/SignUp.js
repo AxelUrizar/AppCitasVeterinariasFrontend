@@ -1,5 +1,6 @@
 import React from "react"
-import { Link, Navigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
+import AuthService from "./services/auth.service"
 
 class SignUp extends React.Component {
     constructor(props){
@@ -13,16 +14,28 @@ class SignUp extends React.Component {
         this.setState({[event.target.name]: event.target.value})
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         e.preventDefault();
 
-        if(this.state.confContrasenya != this.state.contrasenya) return (
+        if(this.state.confContrasenya !== this.state.contrasenya) return (
             this.setState({contrasenyaCoincide: true})
         )
 
         console.log('Submitted!')
         console.log(this.state.nombre, this.state.email, this.state.contrasenya)
-        this.setState({submitDone:true})        
+        AuthService.registrar(
+            this.state.nombre,
+            this.state.email,
+            this.state.contrasenya
+        ).then(this.setState({ submitDone:true }))
+
+        // axios.post('http://localhost:3000/usuarios/registrarse', {
+        //     nombre: this.state.nombre,
+        //     email: this.state.email,
+        //     contrasenya: this.state.contrasenya
+        // }).then((res) => console.log(res.data))
+
+                
     }
 
     render(){
