@@ -1,6 +1,6 @@
 import React from "react"
-import { Navigate } from "react-router-dom"
-import AuthService from "./services/auth.service"
+import { Link, Navigate } from "react-router-dom"
+import AuthService from "../../services/auth.service"
 
 class Login extends React.Component {
     constructor(props){
@@ -14,17 +14,22 @@ class Login extends React.Component {
         this.setState({[event.target.name]: event.target.value})
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         e.preventDefault();
         if (!this.state.email || !this.state.contrasenya) {
             console.log('Fields required!')
         } else {
             console.log('Submitted!')
             console.log(this.state.email, this.state.contrasenya)
-            AuthService.login(
-                this.state.email,
-                this.state.contrasenya
-            ).then(this.setState({submitDone:true}))
+            try {
+                await AuthService.login(
+                    this.state.email,
+                    this.state.contrasenya
+                )    
+                this.setState({submitDone:true})
+            } catch (error) {
+                return console.log(error)
+            }
         }
     }
 
@@ -33,7 +38,7 @@ class Login extends React.Component {
             <div className="container h-75 pb-5 d-flex flex-column align-items-between justify-content-center">
                 <div>
                     <h2 className="mb-5">Log In</h2>
-                    <form onSubmit={this.handleSubmit}>
+                    <form className="mb-3" onSubmit={this.handleSubmit}>
                         <div className="d-flex flex-column justify-content-around">
                             <label className="row m-3">
                                 <p className="col-6">E-mail:</p>
@@ -46,6 +51,7 @@ class Login extends React.Component {
                         </div>
                         <button className="mt-4" type="submit">Acceder</button>
                     </form>
+                    <Link to='/signup'>¿No tienes una cuenta?</Link>
                     {this.state.submitDone && <Navigate to='/perfil'/>}
                 </div>
             </div>

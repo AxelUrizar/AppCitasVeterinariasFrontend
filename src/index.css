@@ -20,3 +20,15 @@ ul {
 a:link {
   text-decoration:none;
 }
+
+.buttonLink a{
+  color: black; 
+}
+
+.buttonLink a:hover{
+  color: black; 
+ }
+
+textarea{
+  resize: none;
+}

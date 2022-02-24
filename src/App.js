@@ -2,15 +2,17 @@ import "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp"
+import Login from "./components/Usuario/Login";
+import SignUp from "./components/Usuario/SignUp"
 import NavBar from "./components/NavBar";
-import Perfil from "./components/Perfil";
-import Mascotas from "./components/Mascota";
-import CitasMascota from "./components/CitasMascota";
+import Perfil from "./components/Usuario/Perfil";
+import Mascotas from "./components/Mascotas/Mascota";
 import Home from "./components/Home";
-import NuevaMascota from "./components/NuevaMascota";
-import TodasMascotas from "./components/TodasMascotas";
+import NuevaMascota from "./components/Mascotas/NuevaMascota";
+import ListadoMascotas from "./components/Mascotas/ListadoMascotas";
+import NuevaCita from "./components/Citas/NuevaCita";
+import EditarCita from "./components/Citas/EditarCita";
+import Logout from "./components/Usuario/Logout";
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
         {/* Paths Principales */}
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/logout' element={<Logout />} />
         <Route path='/signup' element={<SignUp />} />
 
         {/* Paths Usuarios */}
@@ -31,10 +34,12 @@ function App() {
 
         {/* Paths Mascotas */}
         <Route path='/perfil/nuevaMascota' element={<NuevaMascota />} />
-        <Route path='/mascotas/:nombre' element={<Mascotas />} />
-        <Route path='/citas/:nombre' element={<CitasMascota />} />
+        <Route path='/perfil/listadoMascotas' element={<ListadoMascotas />}/>
+        <Route path='/mascotas/:id' element={<Mascotas />} />
 
-        <Route path='/todasMascotas' element={<TodasMascotas />}/>
+        {/* Paths Citas */}
+        <Route path='/mascotas/:id/nuevaCita' element={<NuevaCita />} />
+        <Route path='/mascotas/:id/editarCita/:idCita' element={<EditarCita />} />
 
       </Routes>
     </div>  
