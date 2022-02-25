@@ -5,18 +5,17 @@ import authService from "../services/auth.service";
 const NavBar = () => {
     const [logged, setLogged] = useState(false)
 
-    // const logComprobation = () => {
-    //     console.log(localStorage.getItem('token'))
-    //     if(localStorage.getItem('token')){
-    //         setLogged(true)
-    //     } else {
-    //         setLogged(false)
-    //     }
-    // }
+    const logComprobation = () => {
+        console.log(localStorage.getItem('token'))
+        if(localStorage.getItem('token')){
+            setLogged(true)
+        } else {
+            setLogged(false)
+        }
+    }
 
     useEffect(() => {
-        const usuario = authService.getCurrentUser();
-        if(usuario){setLogged(true)}
+        logComprobation()
     })
 
     return (

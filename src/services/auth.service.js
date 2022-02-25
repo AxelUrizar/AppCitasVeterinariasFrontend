@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const url = 'http://localhost:3000/'
 
@@ -24,6 +25,7 @@ class AuthService {
     logOut(){
         axios.delete(url + 'usuarios/logout')
         localStorage.removeItem('token')
+        return <Navigate to='/login' />
     }
 
     async registrar(nombre, email, contrasenya){

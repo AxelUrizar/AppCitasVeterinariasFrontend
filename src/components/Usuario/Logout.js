@@ -5,7 +5,7 @@ const Logout = () => {
 
     useEffect(() => {
         AuthService.logOut()
-            .then(res => console.log('Logout completado'))
+        
     })
 
     return <h2>logout</h2>
