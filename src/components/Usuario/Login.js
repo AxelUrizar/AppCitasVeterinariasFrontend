@@ -26,10 +26,10 @@ class Login extends React.Component {
                     this.state.email,
                     this.state.contrasenya
                 )    
-                this.setState({submitDone:true})
             } catch (error) {
                 return console.log(error)
             }
+            this.setState({submitDone:true})
         }
     }
 

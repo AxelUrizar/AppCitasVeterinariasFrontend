@@ -23,11 +23,18 @@ class SignUp extends React.Component {
 
         console.log('Submitted!')
         console.log(this.state.nombre, this.state.email, this.state.contrasenya)
-        AuthService.registrar(
-            this.state.nombre,
-            this.state.email,
-            this.state.contrasenya
-        ).then(this.setState({ submitDone:true }))
+
+        try {
+            AuthService.registrar(
+                this.state.nombre,
+                this.state.email,
+                this.state.contrasenya
+            )
+                .then(this.setState({ submitDone:true }))
+                .catch(err => console.log(err))
+        } catch (error) {
+            return console.log(error)
+        }
 
         // axios.post('http://localhost:3000/usuarios/registrarse', {
         //     nombre: this.state.nombre,
